@@ -23,7 +23,7 @@ def main():
 
 
 	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-		# s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+		s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 		s.bind((HOST, PORT))
 		s.listen(1)
@@ -34,7 +34,7 @@ def main():
 			print(addr, conn)
 
 
-
+			(family, socktype, proto, canonname, sockaddr) = google_addr
 			with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as proxy_end:
 				proxy_end.connect(sockaddr)
 				# full_data = b""
@@ -47,13 +47,12 @@ def main():
 				proxy_end.sendall(send_full_data)
 				proxy_end.shutdown(socket.SHUT_WR)
 
-				recv_full_data = b""
+				# recv_full_data = b""
 				while True:
 					data = proxy_end.recv(BUFFER_SIZE)
 					if not data: break 
 					conn.send(data)
 
-			time.sleep(0.5) # dont have to have this 
 			# conn.sendall(full_data)
 			conn.close()
 
