@@ -1,6 +1,5 @@
 certifi==2018.11.29
 chardet==3.0.4
-cliapp==1.20160109
 cmdtest==0.22
 gyp==0.1
 idna==2.8
