@@ -1,6 +1,5 @@
 certifi==2018.11.29
 chardet==3.0.4
-gyp==0.1
 idna==2.8
 Markdown==2.6.6
 Pygments==2.1
